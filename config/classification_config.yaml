@@ -1,0 +1,46 @@
+# Medical Image Classification Training Configuration
+
+# Data configuration
+data:
+  data_directory: "data/processed"
+  dataset_name: "chest_xray"  # Options: chest_xray, brain_tumor
+  image_size: [224, 224]
+  num_classes: 2  # 2 for chest_xray (NORMAL/PNEUMONIA), 4 for brain_tumor
+  class_names: ["NORMAL", "PNEUMONIA"]  # Adjust based on dataset
+
+# Model configuration
+model:
+  architecture: "resnet50"  # Options: basic_cnn, resnet50, efficientnetb0, vgg16, attention_cnn
+  params:
+    dropout_rate: 0.5
+    fine_tune: false
+    fine_tune_layers: 50
+
+# Training configuration
+training:
+  batch_size: 32
+  epochs: 50
+  optimizer: "adam"
+  learning_rate: 0.001
+  loss: "categorical_crossentropy"
+  metrics: ["accuracy", "precision", "recall"]
+
+  # Training options
+  augment: true
+  patience: 10  # Early stopping patience
+  monitor: "val_loss"  # Metric to monitor for callbacks
+
+  # Learning rate scheduling
+  reduce_lr_on_plateau: true
+  reduce_lr_patience: 5
+  reduce_lr_factor: 0.5
+
+# Output configuration
+output_directory: "outputs/classification"
+
+# Evaluation configuration
+evaluation:
+  batch_size: 32
+  save_predictions: true
+  generate_visualizations: true
+  detailed_metrics: true

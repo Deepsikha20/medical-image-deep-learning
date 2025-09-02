@@ -1,0 +1,37 @@
+# Dataset Configuration
+data_directory: "data/raw"
+download_chest_xray: true
+download_brain_tumor: true
+create_sample_data: true
+
+# Download URLs (placeholders - actual datasets require manual download)
+datasets:
+  chest_xray:
+    name: "NIH Chest X-Ray Dataset"
+    url: "https://nihcc.app.box.com/v/ChestXray-NIHCC"  # Requires manual download
+    description: "112,120 frontal-view X-ray images from 30,805 unique patients"
+
+  brain_tumor:
+    name: "Brain Tumor MRI Dataset"
+    url: "https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset"  # Requires Kaggle API
+    description: "Multi-class brain tumor classification dataset"
+
+# Data organization
+directory_structure:
+  chest_xray:
+    - "train/NORMAL"
+    - "train/PNEUMONIA"
+    - "val/NORMAL"
+    - "val/PNEUMONIA"
+    - "test/NORMAL"
+    - "test/PNEUMONIA"
+
+  brain_tumor:
+    - "Training/glioma_tumor"
+    - "Training/meningioma_tumor"
+    - "Training/no_tumor"
+    - "Training/pituitary_tumor"
+    - "Testing/glioma_tumor"
+    - "Testing/meningioma_tumor"
+    - "Testing/no_tumor"
+    - "Testing/pituitary_tumor"

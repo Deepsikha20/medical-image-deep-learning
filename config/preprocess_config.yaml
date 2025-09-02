@@ -1,0 +1,28 @@
+# Data Preprocessing Configuration
+input_directory: "data/raw"
+output_directory: "data/processed"
+
+# Image preprocessing parameters
+target_size: [224, 224]  # [width, height]
+normalization_method: "minmax"  # Options: minmax, zscore, percentile
+maintain_aspect_ratio: true
+
+# Enhancement options
+apply_contrast_enhancement: true
+contrast_method: "clahe"  # Options: clahe, histogram
+apply_denoising: true
+denoise_method: "gaussian"  # Options: gaussian, bilateral, median
+
+# Data augmentation
+apply_augmentation: true
+augmentation_probability: 0.5
+
+# Quality control
+min_image_size: [64, 64]
+max_file_size_mb: 50
+supported_formats: [".jpg", ".jpeg", ".png", ".bmp", ".tiff"]
+
+# Processing options
+parallel_processing: true
+num_workers: 4
+batch_size: 32

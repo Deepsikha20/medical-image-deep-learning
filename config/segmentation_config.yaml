@@ -1,0 +1,44 @@
+# Medical Image Segmentation Training Configuration
+
+# Data configuration
+data:
+  data_directory: "data/processed"
+  dataset_name: "medical_segmentation"
+  image_size: [256, 256]  # Larger size typically better for segmentation
+  num_classes: 3  # Background, organ, pathology
+  class_names: ["Background", "Organ", "Pathology"]
+
+# Model configuration
+model:
+  architecture: "unet"  # Options: unet, attention_unet, unetplusplus, resunet
+  params:
+    dropout_rate: 0.1  # Lower dropout for segmentation
+    deep_supervision: false  # For UNet++
+
+# Training configuration
+training:
+  batch_size: 16  # Smaller batch size due to larger images
+  epochs: 100  # More epochs typically needed for segmentation
+  optimizer: "adam"
+  learning_rate: 0.0001  # Lower learning rate for segmentation
+  loss: "dice"  # Options: dice, categorical_crossentropy, sparse_categorical_crossentropy
+
+  # Training options
+  augment: true
+  patience: 15  # Higher patience for segmentation
+  monitor: "val_dice_coefficient"  # Monitor Dice coefficient
+
+  # Learning rate scheduling
+  reduce_lr_on_plateau: true
+  reduce_lr_patience: 7
+  reduce_lr_factor: 0.3
+
+# Output configuration
+output_directory: "outputs/segmentation"
+
+# Evaluation configuration
+evaluation:
+  batch_size: 8
+  metrics: ["dice_coefficient", "jaccard_index", "pixel_accuracy"]
+  save_predictions: true
+  generate_visualizations: true

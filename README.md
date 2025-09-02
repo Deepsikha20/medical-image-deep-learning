@@ -153,5 +153,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - TensorFlow and Keras development teams
 
 ## 📞 Contact
-Your Name - your.email@example.com
+Your Name - dasdeepsikha70@gmail.com
 Project Link: https://github.com/your-username/medical-image-deep-learning

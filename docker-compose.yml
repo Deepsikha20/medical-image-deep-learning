@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  medical-image-ml:
+    build: .
+    container_name: medical-image-ml
+    volumes:
+      - ./data:/workspace/data
+      - ./outputs:/workspace/outputs
+      - ./models:/workspace/models
+    ports:
+      - "8888:8888"
+      - "6006:6006"  # TensorBoard
+    environment:
+      - PYTHONPATH=/workspace/src
+      - TF_CPP_MIN_LOG_LEVEL=2
+    command: >
+      bash -c "
+        jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+      "
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  tensorboard:
+    image: tensorflow/tensorflow:2.13.0
+    container_name: medical-image-tensorboard
+    volumes:
+      - ./outputs/logs:/logs
+    ports:
+      - "6007:6006"
+    command: tensorboard --logdir=/logs --host=0.0.0.0 --port=6006

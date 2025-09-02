@@ -154,4 +154,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 Your Name - dasdeepsikha70@gmail.com
-Project Link: https://github.com/your-username/medical-image-deep-learning
+Project Link: [https://github.com/Dee/medical-image-deep-learning](https://github.com/Deepsikha20/medical-image-deep-learning)
